@@ -10,7 +10,7 @@ public class SceneViewCamera : MonoBehaviour
     private float wheelSpeed = 1f;
 
     [SerializeField, Range(0.1f, 10f)]
-    private float moveSpeed = 0.3f;
+    private float moveSpeed = 1.0f;
 
     [SerializeField, Range(0.1f, 10f)]
     private float rotateSpeed = 0.3f;
@@ -52,7 +52,7 @@ public class SceneViewCamera : MonoBehaviour
 
         if (Input.GetMouseButton(2))
             transform.Translate(-diff * Time.deltaTime * moveSpeed);
-        else if (Input.GetMouseButton(1))
+        else if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
             CameraRotate(new Vector2(-diff.y, diff.x) * rotateSpeed);
 
         preMousePos = mousePos;
@@ -62,5 +62,13 @@ public class SceneViewCamera : MonoBehaviour
     {
         transform.RotateAround(transform.position, transform.right, angle.x);
         transform.RotateAround(transform.position, Vector3.up, angle.y);
+    }
+
+    public void OnGUI()
+    {
+        GUI.color = Color.black;
+        GUI.Label(new Rect(10, 30, Screen.width, 30), "Left Click : Camera Rotate");
+        GUI.Label(new Rect(10, 50, Screen.width, 30), "Wheel Drag : Camera Move");
+        GUI.Label(new Rect(10, 70, Screen.width, 30), "Wheel Scroll : Camera Zoop");
     }
 }

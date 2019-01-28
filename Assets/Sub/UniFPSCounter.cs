@@ -60,9 +60,6 @@ public class UniFPSCounter : MonoBehaviour
         style.normal.textColor = Color.white;
     }
 
-    /// <summary>
-    /// Display FPS
-    /// </summary>
     private void OnGUI()
     {
         GUI.Box(boxRect, "");
